@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/tokens/colors.css">
+<link rel="stylesheet" href="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/tokens/typography.css">
+<link rel="stylesheet" href="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/tokens/borders.css">
+<link rel="stylesheet" href="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/styles.css">
+<script src="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div onPointerDown="{{ down }}" onPointerMove="{{ move }}" onPointerUp="{{ up }}" onPointerCancel="{{ up }}" style="position:relative;overflow:hidden;border-radius:24% 24% 24% 0 / 18% 18% 18% 0;aspect-ratio:3/4;background:var(--color-sand-100);cursor:ew-resize;box-shadow:0 24px 62px rgba(30,25,20,.20);transition:box-shadow 1200ms cubic-bezier(.22,1,.36,1);touch-action:none;-webkit-user-select:none;user-select:none">
+
+<div style="position:absolute;inset:0">
+<image-slot id="{{ afterId }}" src="{{ afterSrc }}" shape="rect" placeholder="Depois" fit="cover"></image-slot>
+</div>
+
+<div style="position:absolute;inset:0;clip-path:inset(0 {{ clip }} 0 0)">
+<image-slot id="{{ beforeId }}" src="{{ beforeSrc }}" shape="rect" placeholder="Antes" fit="cover"></image-slot>
+</div>
+
+<div style="position:absolute;top:0;bottom:0;left:{{ pos }};width:1px;background:rgba(255,255,255,.9);pointer-events:none"></div>
+<div style="position:absolute;top:50%;left:{{ pos }};transform:translate(-50%,-50%);width:44px;height:44px;border-radius:var(--radius-pill);background:rgba(255,255,255,.88);display:flex;align-items:center;justify-content:center;gap:5px;pointer-events:none">
+<span style="display:block;width:1px;height:12px;background:var(--color-taupe-600)"></span>
+<span style="display:block;width:1px;height:12px;background:var(--color-taupe-600)"></span>
+</div>
+
+<div style="position:absolute;left:0;right:0;bottom:7%;display:flex;justify-content:space-between;align-items:center;padding:0 11%;pointer-events:none">
+<span style="font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-white);background:rgba(0,0,0,.32);border-radius:var(--radius-pill);padding:7px 14px">Antes</span>
+<span style="font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-white);background:rgba(0,0,0,.32);border-radius:var(--radius-pill);padding:7px 14px">Depois</span>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:560},&quot;slotBefore&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;ba-before&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;slotAfter&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;ba-after&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;beforeSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;afterSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { pos: 52 };
+  set(e) {
+    const r = this.frame && this.frame.getBoundingClientRect();
+    if (!r || !r.width) return;
+    const p = Math.max(2, Math.min(98, ((e.clientX - r.left) / r.width) * 100));
+    this.setState({ pos: p });
+  }
+  renderVals() {
+    const p = this.state.pos;
+    return {
+      clip: (100 - p).toFixed(2) + '%',
+      pos: p.toFixed(2) + '%',
+      down: (e) => {
+        this.frame = e.currentTarget;
+        this.dragging = true;
+        if (e.currentTarget.setPointerCapture) { try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {} }
+        this.set(e);
+      },
+      move: (e) => { if (this.dragging) { this.frame = e.currentTarget; this.set(e); } },
+      up: () => { this.dragging = false; },
+      beforeId: this.props.slotBefore || 'ba-before',
+      afterId: this.props.slotAfter || 'ba-after',
+      beforeSrc: this.props.beforeSrc ?? '',
+      afterSrc: this.props.afterSrc ?? ''
+    };
+  }
+}
+</script>
+</body>
+</html>

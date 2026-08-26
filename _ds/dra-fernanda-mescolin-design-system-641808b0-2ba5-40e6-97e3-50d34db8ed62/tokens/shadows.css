@@ -1,0 +1,11 @@
+/* Shadows are almost absent. When present they are warm, wide and nearly invisible —
+   depth comes from spacing and light imagery, never from elevation. */
+:root{
+--shadow-none:none;
+--shadow-whisper:0 2px 24px rgba(158,147,125,.07);
+--shadow-xs:0 2px 24px rgba(158,147,125,.07);
+--shadow-sm:0 8px 40px rgba(158,147,125,.09);
+--shadow-md:0 16px 60px rgba(158,147,125,.10);
+--shadow-lg:0 24px 80px rgba(158,147,125,.12);
+--shadow-xl:0 24px 80px rgba(158,147,125,.12);
+}

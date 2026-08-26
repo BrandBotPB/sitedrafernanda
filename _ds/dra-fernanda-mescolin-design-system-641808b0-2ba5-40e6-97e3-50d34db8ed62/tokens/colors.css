@@ -1,0 +1,65 @@
+/* Dra. Fernanda Mescolin — official palette (IDENTIDADE VISUAL) */
+:root{
+/* Base palette — the only six colors in the identity document */
+--color-white:#FFFFFF;
+--color-black:#000000;
+--color-taupe:#9E937D;
+--color-sand:#DFCFB5;
+--color-burgundy:#824329;
+--color-navy:#2C3B5A;
+
+/* Master brand lockup colors (Fernanda Mescolin signature logo) */
+--color-rose:#D0A898;
+--color-rose-deep:#C49484;
+--color-gray-brand:#888890;
+
+/* Protocol lockup ink (as delivered in the Essence artwork) */
+--color-burgundy-mark:#932A33;
+
+/* Warm neutral steps derived from sand + taupe */
+--color-sand-50:#FBF8F4;
+--color-sand-100:#F4EEE6;
+--color-sand-200:#EBE1D3;
+--color-sand-300:#DFCFB5;
+--color-taupe-400:#BFB39A;
+--color-taupe-500:#9E937D;
+--color-taupe-600:#7E7563;
+--color-ink-700:#4A4640;
+--color-ink-900:#000000;
+
+/* Legacy aliases */
+--color-primary-navy:var(--color-navy);
+--color-primary-burgundy:var(--color-burgundy);
+--color-primary-taupe:var(--color-taupe);
+--color-neutral-white:var(--color-white);
+--color-neutral-off-white:var(--color-sand-50);
+--color-neutral-light-gray:var(--color-sand-200);
+--color-neutral-medium-gray:var(--color-taupe-500);
+--color-neutral-dark-gray:var(--color-ink-700);
+--color-neutral-charcoal:var(--color-black);
+
+/* Semantic */
+--color-text-primary:#000000;
+--color-text-secondary:var(--color-taupe-600);
+--color-text-muted:var(--color-taupe-500);
+--color-text-light:var(--color-white);
+--color-background:var(--color-white);
+--color-background-alt:var(--color-sand-50);
+--color-background-warm:var(--color-sand-100);
+--color-surface-card:var(--color-white);
+--color-border:var(--color-sand-200);
+--color-border-strong:var(--color-taupe-400);
+--color-accent:var(--color-burgundy);
+--color-accent-cool:var(--color-navy);
+
+/* States */
+--color-hover:var(--color-taupe-600);
+--color-active:var(--color-navy);
+--color-disabled:var(--color-sand-200);
+
+/* Protocol accents */
+--protocol-lip:var(--color-burgundy-mark);
+--protocol-sculpt:var(--color-navy);
+--protocol-derma:var(--color-navy);
+--protocol-essence:var(--color-burgundy-mark);
+}

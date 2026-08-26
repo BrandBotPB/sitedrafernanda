@@ -1,0 +1,32 @@
+/* Shape system — the arch is the brand's signature form.
+   Rectangles are for rules and bands; anything holding an image is softened. */
+:root{
+--radius-none:0;
+--radius-xs:2px;
+--radius-sm:4px;
+--radius-md:8px;
+--radius-lg:16px;
+--radius-pill:9999px;
+
+/* Soft: barely-there rounding for bands, panels, quiet surfaces */
+--radius-soft:20px;
+--radius-soft-lg:32px;
+
+/* Arch: full half-round top, flat base — portraits, protocol imagery, hero */
+--radius-arch:999px 999px 0 0 / 340px 340px 0 0;
+/* Arch soft: gentler shoulder, for wider crops */
+--radius-arch-soft:999px 999px 0 0 / 180px 180px 0 0;
+/* Lozenge: arched top and bottom — full-bleed editorial bands */
+--radius-lozenge:999px 999px 999px 999px / 120px 120px 120px 120px;
+/* Petal: one square corner, three round — accent crops */
+--radius-petal:180px 180px 180px 0;
+
+/* Legacy aliases */
+--radius-xl:var(--radius-lg);
+--radius-full:var(--radius-pill);
+
+/* Border widths — hairline is the only real option */
+--border-hairline:1px;
+--border-thin:1px;
+--border-normal:2px;
+}

@@ -1,0 +1,41 @@
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Display / Serif faces */
+:root {
+--font-serif-display: 'Tan Vivre Libre', 'Times New Roman', Times, serif;
+--font-sans-body: 'Poppins', system-ui, sans-serif;
+
+/* Display sizes are intentionally large; serif weight is always 400 */
+--font-size-display-hero: 64px;
+
+/* Display sizes */
+--font-size-display-xl: 56px;
+--font-size-display-lg: 48px;
+--font-size-display-md: 40px;
+--font-size-display-sm: 32px;
+
+/* Heading sizes */
+--font-size-heading-xl: 32px;
+--font-size-heading-lg: 28px;
+--font-size-heading-md: 24px;
+--font-size-heading-sm: 20px;
+
+/* Body sizes */
+--font-size-body-lg: 18px;
+--font-size-body-md: 16px;
+--font-size-body-sm: 14px;
+--font-size-body-xs: 12px;
+
+/* Line heights */
+--line-height-tight: 1.2;
+--line-height-normal: 1.5;
+--line-height-relaxed: 1.8;
+
+/* Font weights */
+--font-weight-light: 300;
+--font-weight-regular: 400;
+--font-weight-medium: 500;
+--font-weight-semibold: 600;
+--font-weight-bold: 700;
+}

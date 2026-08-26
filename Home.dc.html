@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/tokens/colors.css">
+<link rel="stylesheet" href="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/tokens/typography.css">
+<link rel="stylesheet" href="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/tokens/borders.css">
+<link rel="stylesheet" href="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/styles.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Poppins:wght@200;300;400&display=swap">
+<script src="_ds/dra-fernanda-mescolin-design-system-641808b0-2ba5-40e6-97e3-50d34db8ed62/_ds_bundle.js"></script>
+<script src="./cursor-grid.js"></script>
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--color-white);color:var(--color-black);font-family:var(--font-sans-body);font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden;--font-serif-display:'Tan Vivre Libre','Cormorant Garamond',Times,serif}
+*{box-sizing:border-box}
+img{display:block;max-width:100%}
+a{color:var(--color-navy);text-decoration:none}
+a:hover{color:var(--color-taupe-600)}
+::selection{background:var(--color-sand-200)}
+@keyframes rise{from{opacity:0;transform:translateY(var(--rise,34px));filter:blur(7px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes riseX{from{opacity:0;transform:translateX(var(--slideX,28px))}to{opacity:1;transform:none}}
+@keyframes drawY{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes floatY{0%,100%{transform:translateY(-7px)}50%{transform:translateY(7px)}}
+@keyframes riseSm{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes maskUp{from{clip-path:inset(0 0 100% 0);opacity:.4}to{clip-path:inset(0 0 0 0);opacity:1}}
+@keyframes drift{from{transform:translateY(-3%) scale(1.07)}to{transform:translateY(3%) scale(1.07)}}
+@keyframes driftSlow{from{transform:translateY(-1.6%) scale(1.05)}to{transform:translateY(1.6%) scale(1.05)}}
+@keyframes growLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes veil{0%{opacity:1}60%{opacity:1}100%{opacity:0}}
+@keyframes revealUp{from{clip-path:inset(0 0 106% 0);opacity:0;transform:translateY(var(--rise,26px))}to{clip-path:inset(-18% -18% -18% -18%);opacity:1;transform:none}}
+@keyframes bandIn{from{opacity:.45;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes heroExit{to{opacity:.22;transform:translateY(-26px)}}
+section[id]{scroll-margin-top:clamp(96px,9vw,124px)}
+[data-card] h3,[data-card] p{transition:transform 700ms cubic-bezier(.22,1,.36,1),color 600ms cubic-bezier(.22,1,.36,1)}
+[data-card]{transition:border-top-color 700ms cubic-bezier(.22,1,.36,1)}
+[data-card]:hover h3{transform:translateX(6px)}
+[data-jstep] h3,[data-jstep] p{transition:transform 700ms cubic-bezier(.22,1,.36,1),color 600ms cubic-bezier(.22,1,.36,1)}
+[data-jstep]:hover h3{transform:translateX(6px)}
+[data-link]{position:relative}
+[data-link]::after{content:"";position:absolute;left:0;bottom:-1px;width:100%;height:1px;background:var(--color-taupe-500);transform:scaleX(0);transform-origin:left;transition:transform 900ms cubic-bezier(.22,1,.36,1)}
+[data-link]:hover::after{transform:scaleX(1)}
+[data-flink]{display:inline-block;transition:transform 700ms cubic-bezier(.22,1,.36,1),opacity 800ms cubic-bezier(.22,1,.36,1)}
+[data-flink]:hover{transform:translateX(4px)}
+[data-dep]{flex:0 1 clamp(220px,23vw,268px);cursor:pointer;transition:flex-basis 950ms cubic-bezier(.22,1,.36,1),box-shadow 950ms cubic-bezier(.22,1,.36,1),background-color 950ms cubic-bezier(.22,1,.36,1),transform 950ms cubic-bezier(.22,1,.36,1)}
+[data-dep]:hover{box-shadow:0 26px 62px rgba(30,25,20,.13)}
+[data-dep][data-open="1"]{flex-basis:min(560px,90vw);background:var(--color-sand-100);box-shadow:0 30px 72px rgba(30,25,20,.15)}
+[data-dep] [data-full]{max-height:0;opacity:0;overflow:hidden;transition:max-height 950ms cubic-bezier(.22,1,.36,1),opacity 700ms cubic-bezier(.22,1,.36,1)}
+[data-dep][data-open="1"] [data-full]{max-height:360px;opacity:1}
+[data-dep] [data-short]{max-height:200px;opacity:1;overflow:hidden;transition:max-height 800ms cubic-bezier(.22,1,.36,1),opacity 500ms cubic-bezier(.22,1,.36,1)}
+[data-dep][data-open="1"] [data-short]{max-height:0;opacity:0}
+[data-float]{animation:floatY 7.2s cubic-bezier(.45,0,.55,1) infinite}
+[data-float]:nth-child(2){animation-duration:8.6s;animation-delay:-1.4s;margin-top:clamp(15px,2.6vw,37px)}
+[data-float]:nth-child(3){animation-duration:6.6s;animation-delay:-3.1s;margin-top:clamp(8px,1.4vw,20px)}
+[data-float]:nth-child(4){animation-duration:9.1s;animation-delay:-2.2s;margin-top:clamp(19px,2.8vw,45px)}
+[data-float]:nth-child(5){animation-duration:7.8s;animation-delay:-4.6s}
+[data-float][data-open="1"]{animation:none}
+@media (max-width:640px){[data-float]{animation:none;margin-top:0!important}[data-dep]{flex:1 1 100%}}
+@keyframes hint{0%{transform:translateY(0);opacity:.85}55%{transform:translateY(11px);opacity:.1}100%{transform:translateY(0);opacity:.85}}
+figure{box-shadow:0 18px 52px rgba(30,25,20,.10)}
+[data-photo]{transition:transform 1600ms cubic-bezier(.22,1,.36,1),box-shadow 1200ms cubic-bezier(.22,1,.36,1)}
+[data-photo="light"]{box-shadow:0 20px 60px rgba(30,25,20,.10)}
+[data-photo="light"]:hover{transform:translateY(-4px);box-shadow:0 32px 76px rgba(30,25,20,.15)}
+[data-photo="sand"]{box-shadow:0 22px 62px rgba(40,26,18,.13)}
+[data-photo="sand"]:hover{transform:translateY(-4px);box-shadow:0 34px 78px rgba(40,26,18,.18)}
+[data-nav]{position:relative}
+[data-nav]::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:1px;background:currentColor;opacity:.45;transform:scaleX(0);transform-origin:left;transition:transform 700ms cubic-bezier(.22,1,.36,1)}
+[data-nav]:hover::after{transform:scaleX(1)}
+[data-tech]{transition:border-top-color 700ms cubic-bezier(.22,1,.36,1)}
+[data-tech] p,[data-tech] h3{transition:color 600ms cubic-bezier(.22,1,.36,1),transform 700ms cubic-bezier(.22,1,.36,1)}
+[data-tech]:hover{border-top-color:var(--color-taupe-500)}
+[data-tech]:hover h3{transform:translateX(7px)}
+[data-tech]:hover p:first-of-type{color:var(--color-taupe-600)}
+[data-tech]:hover p:last-of-type{color:var(--color-ink-700)}
+[data-proto]>img,[data-proto]>p,[data-proto]>a{transition:transform 900ms cubic-bezier(.22,1,.36,1),border-color 800ms cubic-bezier(.22,1,.36,1)}
+[data-proto]:hover>img,[data-proto]:hover>p{transform:translateY(-3px)}
+[data-proto]:hover>a{border-color:var(--color-white)}
+[data-cta] button{transition:transform 700ms cubic-bezier(.22,1,.36,1),box-shadow 700ms cubic-bezier(.22,1,.36,1),background-color 800ms cubic-bezier(.22,1,.36,1),color 800ms cubic-bezier(.22,1,.36,1),border-color 800ms cubic-bezier(.22,1,.36,1)}
+[data-cta]:hover button{transform:scale(1.02);box-shadow:0 16px 38px rgba(44,59,90,.16)}
+[data-cta]:active button{transform:scale(.99)}
+@media (max-width:640px){[data-gallery]{flex-direction:column;height:470px!important;perspective:none}[data-gallery]>div{transform:none!important;border-radius:28px 28px 28px 0}}
+@media (max-width:860px){body{--rise:16px;--slideX:14px}[data-parallax]{animation:none!important;transform:none!important}[data-photo]:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-delay:0ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+</helmet>
+
+<div style="position:relative">
+
+<div aria-hidden="true" style="position:fixed;inset:0;z-index:200;background:var(--color-white);pointer-events:none;animation:veil 1.1s cubic-bezier(.22,1,.36,1) both"></div>
+
+<div aria-hidden="true" style="position:fixed;top:0;left:0;right:0;height:2px;z-index:80;background:#61202E;opacity:.7;transform:scaleX(0);transform-origin:left;pointer-events:none;animation:growLine linear both;animation-timeline:scroll()"></div>
+
+<header data-om-header="1" style="position:fixed;top:0;left:0;right:0;z-index:60;height:clamp(96px,8.4vw,116px);display:flex;align-items:center;border-bottom:1px solid transparent;transition:height 900ms cubic-bezier(.22,1,.36,1),background-color 900ms cubic-bezier(.22,1,.36,1),border-color 900ms cubic-bezier(.22,1,.36,1)">
+<div style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:clamp(12px,2vw,32px);padding:0 clamp(20px,4.4vw,96px)">
+<a href="Home.dc.html" style="display:block;flex:none"><img src="assets/logo-fm-full.png" alt="Dra. Fernanda Mescolin" style="height:clamp(62px,5.4vw,80px);width:auto;animation:fadeIn 1.6s cubic-bezier(.22,1,.36,1) .1s both"></a>
+<nav style="display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end;gap:10px clamp(8px,1.4vw,30px);animation:riseSm 1.2s cubic-bezier(.22,1,.36,1) .5s both">
+<a href="#sobre" data-nav="1" style="font-size:clamp(9.5px,.85vw,11px);letter-spacing:.24em;text-transform:uppercase;color:var(--color-taupe-600);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.45">Sobre</a>
+<a href="#metodo" data-nav="1" style="font-size:clamp(9.5px,.85vw,11px);letter-spacing:.24em;text-transform:uppercase;color:var(--color-taupe-600);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.45">Método</a>
+<a href="#protocolos" data-nav="1" style="font-size:clamp(9.5px,.85vw,11px);letter-spacing:.24em;text-transform:uppercase;color:var(--color-taupe-600);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.45">Protocolos</a>
+<a href="#tecnologias" data-nav="1" style="font-size:clamp(9.5px,.85vw,11px);letter-spacing:.24em;text-transform:uppercase;color:var(--color-taupe-600);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.45">Tecnologias</a>
+<a href="GoldIncision.dc.html" style="font-size:clamp(9.5px,.82vw,10.5px);letter-spacing:.2em;text-transform:uppercase;color:var(--color-white);background:#61202E;border:1px solid #61202E;border-radius:var(--radius-pill);padding:clamp(11px,1.2vw,13px) clamp(12px,1.9vw,26px);transition:background-color 800ms cubic-bezier(.22,1,.36,1),color 800ms cubic-bezier(.22,1,.36,1),transform 700ms cubic-bezier(.22,1,.36,1),box-shadow 700ms cubic-bezier(.22,1,.36,1)" style-hover="background:var(--color-white);color:#61202E;transform:scale(1.03);box-shadow:0 12px 30px rgba(97,32,46,.16)">GoldIncision<span style="font-size:.72em;vertical-align:super;letter-spacing:0">®</span></a>
+<a href="#contato" style="font-size:clamp(9.5px,.85vw,11px);letter-spacing:.24em;text-transform:uppercase;color:var(--color-navy);border:1px solid var(--color-sand-300);border-radius:var(--radius-pill);padding:clamp(11px,1.2vw,13px) clamp(12px,1.9vw,26px);transition:background-color 800ms cubic-bezier(.22,1,.36,1),color 800ms cubic-bezier(.22,1,.36,1),transform 700ms cubic-bezier(.22,1,.36,1),box-shadow 700ms cubic-bezier(.22,1,.36,1)" style-hover="background:var(--color-navy);color:var(--color-white);transform:scale(1.03);box-shadow:0 12px 30px rgba(44,59,90,.18)">Agendar</a>
+</nav>
+</div>
+</header>
+
+<section data-screen-label="Hero" style="position:relative;background:var(--color-sand-50);border-radius:0 0 var(--radius-soft-lg) var(--radius-soft-lg);overflow:hidden">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.98fr);gap:clamp(27px,3.4vw,57px);align-items:center;padding:clamp(150px,16vh,186px) clamp(24px,5vw,96px) clamp(48px,6vh,76px);max-width:1560px;margin:0 auto;animation:heroExit linear both;animation-timeline:view();animation-range:exit 0% exit 92%">
+<div>
+<p style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--color-taupe-500);margin:0 0 clamp(19px,2.3vw,31px);animation:riseSm 1s cubic-bezier(.22,1,.36,1) .05s both">Cirurgia Vascular, Celulite, Lipedema e Flacidez</p>
+<h1 style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(24px,3.2vw,52px);line-height:1.08;letter-spacing:-.015em;margin:0;text-wrap:pretty;animation:revealUp 1.5s cubic-bezier(.22,1,.36,1) .18s both">Cuidado e embelezamento<br>das pernas <span style="color:var(--color-taupe-800)">de forma integral.</span></h1>
+<p style="font-size:16px;line-height:2;color:var(--color-text-secondary);margin:clamp(22px,2.7vw,34px) 0 0;max-width:47ch;animation:rise 1.4s cubic-bezier(.22,1,.36,1) .42s both">Aqui, cada tratamento começa com escuta atenta, diagnóstico vascular avançado e um planejamento exclusivo para a sua realidade. Como founder do Protocolo Essence Concept, desenvolvi uma abordagem que integra saúde vascular, estética e tecnologia de ponta.</p>
+<p style="font-size:16px;line-height:2;color:var(--color-text-secondary);margin:22px 0 0;max-width:47ch;animation:rise 1.4s cubic-bezier(.22,1,.36,1) .54s both">Atuo no tratamento de varizes, lipedema, flacidez e harmonização glútea e sou expert no GoldIncision®, técnica avançada e minimamente invasiva para o tratamento da celulite. Mais do que transformar a aparência, meu compromisso é devolver leveza, confiança, bem-estar e qualidade de vida.</p>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px;margin-top:clamp(28px,3.1vw,44px);animation:riseSm 1.2s cubic-bezier(.22,1,.36,1) .78s both">
+<span data-cta="1" style="display:inline-flex"><x-import component-from-global-scope="DraFernandaMescolinDesignSystem_641808.Button" onClick="{{ book }}" hint-size="200px,54px">Agendar avaliação</x-import></span>
+<a href="#protocolos" data-link="1" style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-navy);border-bottom:1px solid var(--color-sand-300);padding-bottom:9px;transition:opacity 800ms cubic-bezier(.22,1,.36,1),border-color 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5;border-color:var(--color-taupe-500)">Conhecer os protocolos</a>
+</div>
+</div>
+<figure data-photo="light" style="margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:24% 24% 24% 0 / 19.2% 19.2% 19.2% 0;background:var(--color-sand-100);animation:maskUp 1.9s cubic-bezier(.22,1,.36,1) .1s both">
+<img data-parallax="1" src="assets/portrait-hero-white.jpg" alt="Dra. Fernanda Mescolin" style="width:100%;height:100%;object-fit:cover;object-position:50% 24%;animation:drift linear both;animation-timeline:view();animation-range:cover 0% cover 100%">
+</figure>
+</div>
+</section>
+
+<section data-screen-label="Cuidado antes do tratamento" style="padding:clamp(24px,2.8vw,38px) clamp(24px,5vw,96px) clamp(32px,3.8vw,54px)">
+<div style="max-width:1320px;margin:0 auto">
+<p style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(20px,2.4vw,34px);line-height:1.18;letter-spacing:-.012em;margin:0 0 clamp(27px,3.1vw,46px);max-width:24ch;animation:rise 1.2s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 6% entry 68%">Um cuidado que começa muito antes do tratamento.</p>
+<div style="display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1fr);gap:clamp(27px,4.1vw,75px);align-items:center">
+<figure data-photo="light" style="margin:0;overflow:hidden;border-radius:24% 24% 24% 0 / 19.2% 19.2% 19.2% 0;aspect-ratio:4/5;background:var(--color-sand-100);animation:maskUp 1.6s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 2% entry 62%">
+<img data-parallax="1" src="assets/portrait-arch-black.jpg" alt="Dra. Fernanda Mescolin em consulta" style="width:100%;height:100%;object-fit:cover;object-position:50% 50%;animation:driftSlow linear both;animation-timeline:view();animation-range:cover 0% cover 100%">
+</figure>
+<div style="--slideX:26px;animation:riseX 1.3s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 8% entry 74%">
+<h2 style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(22px,2.7vw,37px);line-height:1.12;letter-spacing:-.012em;margin:0 0 clamp(22px,2.3vw,31px);max-width:22ch">Resultados consistentes começam com um tratamento planejado exclusivamente para você.</h2>
+<p style="font-size:16px;line-height:2;color:var(--color-text-secondary);margin:0 0 22px;max-width:46ch">Cada consulta começa com escuta atenta, avaliação detalhada e investigação das causas dos sintomas. A partir desse diagnóstico, desenvolvemos um plano individualizado que integra saúde, funcionalidade e estética.</p>
+<p style="font-size:16px;line-height:2;color:var(--color-text-secondary);margin:0 0 22px;max-width:46ch">Tecnologias como Ultrassom Doppler e Realidade Aumentada permitem identificar com precisão a origem do problema e direcionar cada decisão clínica com segurança e excelência. Mais do que indicar um procedimento, meu compromisso é construir um plano que respeite sua individualidade e entregue resultados naturais, consistentes e duradouros.</p>
+<p style="font-size:16px;line-height:2;color:var(--color-text-secondary);margin:0;max-width:46ch">Aqui, o cuidado não termina quando você sai do consultório. Ele continua. Porque transformação duradoura exige constância, ajustes e acompanhamento. E você merece isso.</p>
+<a href="#metodo" data-link="1" style="display:inline-block;margin-top:clamp(27px,3.1vw,41px);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-navy);border-bottom:1px solid var(--color-sand-300);padding-bottom:9px;transition:opacity 800ms cubic-bezier(.22,1,.36,1),border-color 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5;border-color:var(--color-taupe-500)">Como conduzimos o cuidado</a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="metodo" data-screen-label="A medicina evoluiu" style="background:var(--color-sand-50);border-radius:var(--radius-soft-lg);animation:bandIn 1.3s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 0% entry 42%;padding:clamp(38px,4.5vw,62px) clamp(24px,5vw,96px)">
+<div style="max-width:1320px;margin:0 auto">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:36px;margin-bottom:clamp(41px,5.4vw,82px)">
+<h2 style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(23px,3vw,44px);line-height:1.1;letter-spacing:-.014em;margin:0;max-width:16ch;animation:revealUp 1.5s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 8% entry 72%">A medicina evoluiu.<br><span style="color:var(--color-taupe-500)">O cuidado também.</span></h2>
+<p style="font-size:15px;line-height:2;color:var(--color-text-secondary);margin:0;max-width:38ch;animation:rise 1.2s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 12% entry 76%">Quatro princípios sustentam cada decisão clínica e se repetem em todos os protocolos que desenvolvemos.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0">
+<article data-card="1" style="border-top:1px solid var(--color-sand-200);padding:clamp(22px,2.3vw,31px) clamp(17px,2vw,29px) clamp(28px,3.1vw,41px) 0;animation:rise 1.1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 6% entry 66%">
+<span style="display:inline-flex;color:var(--color-taupe-400);margin:0 0 clamp(22px,2.3vw,34px)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"></circle><line x1="20" y1="20" x2="14.8" y2="14.8"></line></svg></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(17px,1.4vw,21px);line-height:1.2;margin:0 0 16px">Diagnóstico preciso</h3>
+<p style="font-size:14px;line-height:1.95;color:var(--color-text-secondary);margin:0;max-width:30ch">Um diagnóstico bem-feito não apenas orienta a conduta, mas também aumenta a segurança e a eficácia de todo o processo.</p>
+</article>
+<article data-card="1" style="border-top:1px solid var(--color-sand-200);padding:clamp(22px,2.3vw,31px) clamp(17px,2vw,29px) clamp(28px,3.1vw,41px) 0;animation:rise 1.1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 10% entry 70%">
+<span style="display:inline-flex;color:var(--color-taupe-400);margin:0 0 clamp(22px,2.3vw,34px)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="10.6,8.8 13.6,12 10.6,15.2"></polyline></svg></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(17px,1.4vw,21px);line-height:1.2;margin:0 0 16px">Planejamento individualizado</h3>
+<p style="font-size:14px;line-height:1.95;color:var(--color-text-secondary);margin:0;max-width:30ch">Cada protocolo é desenvolvido conforme as necessidades clínicas, funcionais e estéticas de cada paciente.</p>
+</article>
+<article data-card="1" style="border-top:1px solid var(--color-sand-200);padding:clamp(22px,2.3vw,31px) clamp(17px,2vw,29px) clamp(28px,3.1vw,41px) 0;animation:rise 1.1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 14% entry 74%">
+<span style="display:inline-flex;color:var(--color-taupe-400);margin:0 0 clamp(22px,2.3vw,34px)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="1.8" fill="currentColor" stroke="none"></circle><circle cx="18" cy="18" r="1.8" fill="currentColor" stroke="none"></circle><circle cx="12" cy="6" r="1.8" fill="currentColor" stroke="none"></circle><line x1="7.5" y1="17" x2="10.5" y2="8"></line><line x1="16.5" y1="17" x2="13.5" y2="8"></line><line x1="8" y1="18" x2="16" y2="18"></line></svg></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(17px,1.4vw,21px);line-height:1.2;margin:0 0 16px">Tecnologia aplicada</h3>
+<p style="font-size:14px;line-height:1.95;color:var(--color-text-secondary);margin:0;max-width:30ch">Equipamentos modernos ampliam a capacidade diagnóstica e oferecem mais precisão e conforto durante os procedimentos.</p>
+</article>
+<article data-card="1" style="border-top:1px solid var(--color-sand-200);padding:clamp(22px,2.3vw,31px) 0 clamp(28px,3.1vw,41px);animation:rise 1.1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 18% entry 78%">
+<span style="display:inline-flex;color:var(--color-taupe-400);margin:0 0 clamp(22px,2.3vw,34px)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"></rect><line x1="3" y1="10" x2="21" y2="10"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="16" y1="3" x2="16" y2="7"></line><polyline points="8,15 10.5,17.5 15,13"></polyline></svg></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(17px,1.4vw,21px);line-height:1.2;margin:0 0 16px">Acompanhamento</h3>
+<p style="font-size:14px;line-height:1.95;color:var(--color-text-secondary);margin:0;max-width:30ch">O tratamento continua após cada etapa, com reavaliações e orientações para acompanhar a evolução clínica.</p>
+</article>
+</div>
+</div>
+</section>
+
+<section id="protocolos" data-screen-label="Universo Essence" style="position:relative;overflow:hidden;background:var(--color-navy);color:var(--color-white);border-radius:var(--radius-soft-lg);margin-top:clamp(19px,2.3vw,31px);animation:bandIn 1.3s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 0% entry 42%;padding:clamp(65px,8.8vw,122px) clamp(24px,5vw,96px)">
+<div aria-hidden="true" style="position:absolute;inset:0;z-index:0;opacity:.2;pointer-events:none">
+<x-import component-from-global-scope="cursor-grid" cell-size="78" color="#FFFFFF" radius="170" hold-time="380" fade-duration="1100" line-width="1" style="position:absolute;inset:0" hint-size="100%,100%"></x-import>
+</div>
+<div style="position:relative;z-index:1;max-width:1320px;margin:0 auto">
+<div style="max-width:64ch;margin-bottom:clamp(44px,5.4vw,79px)">
+<p style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:0 0 clamp(19px,2.3vw,30px);animation:riseSm 1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 4% entry 60%">Protocolos próprios e exclusivos</p>
+<h2 style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(27px,3.4vw,48px);line-height:1.06;letter-spacing:-.015em;margin:0 0 clamp(20px,2.3vw,30px);animation:revealUp 1.5s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 6% entry 68%">Essence Concept</h2>
+<p style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:0 0 clamp(19px,2.2vw,27px)">A evolução no cuidado vascular estético</p>
+<p style="font-size:16px;line-height:2;color:rgba(255,255,255,.72);margin:0;max-width:52ch;animation:rise 1.3s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 10% entry 72%">Protocolos desenvolvidos pela Dra. Fernanda Mescolin que unem saúde vascular e beleza natural, sempre com os mesmos princípios: ciência, diagnóstico avançado, plano estratégico, tecnologia integrada, acompanhamento contínuo e resultados que transcendem a estética superficial.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(28px,3.4vw,56px)">
+<article data-proto="1" style="display:flex;flex-direction:column;animation:rise 1.2s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 4% entry 62%">
+<figure data-photo="light" style="margin:0;overflow:hidden;border-radius:24% 24% 24% 0 / 19.2% 19.2% 19.2% 0;aspect-ratio:4/5;background:rgba(255,255,255,.06)">
+<img src="assets/edit-legs-shadow.jpg" alt="Tratamento Vascular Essence" style="width:100%;height:100%;object-fit:cover">
+</figure>
+<div style="margin:clamp(23px,2.7vw,34px) 0 20px"><span style="display:block;font-family:var(--font-serif-display);font-weight:300;font-size:30px;color:var(--color-white);line-height:1">Vascular</span><span style="display:block;font-family:var(--font-serif-display);font-weight:300;font-size:17px;color:rgba(255,255,255,.6);line-height:1;margin-top:3px">essence</span></div>
+<p style="font-size:14px;line-height:1.95;color:rgba(255,255,255,.62);margin:0 0 10px;max-width:32ch">Tratamento integrado para varizes e vasinhos.</p>
+<p style="font-size:14px;line-height:1.95;color:rgba(255,255,255,.62);margin:0;max-width:34ch">Diagnóstico vascular, tecnologias complementares e planejamento individualizado para cuidar da circulação, da pele e da qualidade de vida.</p>
+<a href="EssenceConcept.dc.html" style="align-self:flex-start;margin-top:28px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-white);border-bottom:1px solid rgba(255,255,255,.28);padding-bottom:9px;transition:border-color 800ms cubic-bezier(.22,1,.36,1)" style-hover="border-color:var(--color-white)">Conhecer protocolo</a>
+</article>
+<article data-proto="1" style="display:flex;flex-direction:column;animation:rise 1.2s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 9% entry 67%">
+<figure data-photo="light" style="margin:0;overflow:hidden;border-radius:24% 24% 24% 0 / 19.2% 19.2% 19.2% 0;aspect-ratio:4/5;background:rgba(255,255,255,.06)">
+<img src="assets/edit-knees.jpg" alt="Protocolo LipEssence" style="width:100%;height:100%;object-fit:cover">
+</figure>
+<img src="assets/logo-lipessence-white-sm.png" alt="LipEssence" style="align-self:flex-start;height:88px;width:auto;object-fit:contain;margin:clamp(23px,2.7vw,34px) 0 20px">
+<p style="font-size:14px;line-height:1.95;color:rgba(255,255,255,.62);margin:0 0 10px;max-width:32ch">Protocolo voltado para o lipedema.</p>
+<p style="font-size:14px;line-height:1.95;color:rgba(255,255,255,.62);margin:0;max-width:34ch">Combina estratégias de desinflamação tecidual, melhora da microcirculação, drenagem linfática especializada e tecnologias de remodelação corporal com segurança e conforto.</p>
+<a href="LipEssence.dc.html" style="align-self:flex-start;margin-top:28px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-white);border-bottom:1px solid rgba(255,255,255,.28);padding-bottom:9px;transition:border-color 800ms cubic-bezier(.22,1,.36,1)" style-hover="border-color:var(--color-white)">Conhecer protocolo</a>
+</article>
+<article data-proto="1" style="display:flex;flex-direction:column;animation:rise 1.2s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 14% entry 72%">
+<figure data-photo="light" style="margin:0;overflow:hidden;border-radius:24% 24% 24% 0 / 19.2% 19.2% 19.2% 0;aspect-ratio:4/5;background:rgba(255,255,255,.06)">
+<img src="assets/edit-back-linen.jpg" alt="Protocolo SculptEssence" style="width:100%;height:100%;object-fit:cover">
+</figure>
+<img src="assets/logo-sculptessence-white-sm.png" alt="SculptEssence" style="align-self:flex-start;height:88px;width:auto;object-fit:contain;margin:clamp(23px,2.7vw,34px) 0 20px">
+<p style="font-size:14px;line-height:1.95;color:rgba(255,255,255,.62);margin:0 0 10px;max-width:32ch">Une saúde vascular, firmeza e textura da pele em um só protocolo.</p>
+<p style="font-size:14px;line-height:1.95;color:rgba(255,255,255,.62);margin:0;max-width:34ch">Associa diferentes tecnologias para tratar gordura localizada, celulite, flacidez, qualidade da pele e contorno corporal de forma integrada.</p>
+<a href="SculptEssence.dc.html" style="align-self:flex-start;margin-top:28px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-white);border-bottom:1px solid rgba(255,255,255,.28);padding-bottom:9px;transition:border-color 800ms cubic-bezier(.22,1,.36,1)" style-hover="border-color:var(--color-white)">Conhecer protocolo</a>
+</article>
+<article data-proto="1" style="display:flex;flex-direction:column;animation:rise 1.2s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 19% entry 77%">
+<figure data-photo="light" style="margin:0;overflow:hidden;border-radius:24% 24% 24% 0 / 19.2% 19.2% 19.2% 0;aspect-ratio:4/5;background:rgba(255,255,255,.06)">
+<img src="assets/derma-morpheus.jpg" alt="Protocolo DermaEssence" style="width:100%;height:100%;object-fit:cover;object-position:50% 32%">
+</figure>
+<img src="assets/logo-dermaessence-white.png" alt="DermaEssence" style="align-self:flex-start;height:88px;width:auto;object-fit:contain;margin:clamp(23px,2.7vw,34px) 0 20px">
+<p style="font-size:14px;line-height:1.95;color:rgba(255,255,255,.62);margin:0 0 10px;max-width:32ch">Protocolo completo para revitalização da pele.</p>
+<p style="font-size:14px;line-height:1.95;color:rgba(255,255,255,.62);margin:0;max-width:34ch">Estímulo de colágeno e rejuvenescimento profundo, mantendo as características naturais da pele.</p>
+<a href="#contato" style="align-self:flex-start;margin-top:28px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-white);border-bottom:1px solid rgba(255,255,255,.28);padding-bottom:9px;transition:border-color 800ms cubic-bezier(.22,1,.36,1)" style-hover="border-color:var(--color-white)">Consultar indicação</a>
+</article>
+</div>
+</div>
+</section>
+
+<section id="goldincision" data-screen-label="GoldIncision" style="background:var(--color-sand);color:var(--color-black);border-radius:var(--radius-soft-lg);margin-top:clamp(8px,1.1vw,16px);animation:bandIn 1.3s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 0% entry 42%;padding:clamp(38px,4.5vw,62px) clamp(24px,5vw,96px);overflow:hidden">
+<div style="max-width:1320px;margin:0 auto">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);gap:clamp(27px,3.4vw,60px);align-items:center">
+<div style="animation:rise 1.3s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 6% entry 70%">
+<x-import component-from-global-scope="DraFernandaMescolinDesignSystem_641808.Badge" variant="navy" hint-size="180px,28px">Formação certificada</x-import>
+<h2 style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(28px,3.7vw,56px);line-height:1.02;letter-spacing:-.015em;margin:clamp(19px,2.3vw,30px) 0 0;color:#61202E">GoldIncision<span style="font-size:.42em;vertical-align:super;letter-spacing:0">®</span></h2>
+<p style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(17px,1.7vw,25px);line-height:1.3;margin:clamp(15px,1.7vw,22px) 0 clamp(22px,2.5vw,31px);max-width:26ch;color:var(--color-black)">Tratamento avançado e minimamente invasivo para celulite.</p>
+<div style="width:64px;height:1px;background:#61202E;margin-bottom:clamp(22px,2.5vw,31px);transform-origin:left;animation:growLine 1.4s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 12% entry 66%"></div>
+<p style="font-size:15px;line-height:2.05;color:var(--color-ink-700);margin:0 0 20px;max-width:46ch">A Dra. Fernanda é expert em GoldIncision®, técnica desenvolvida pelo Dr. Roberto Chacur, indicada para corrigir a celulite de forma eficaz e precisa.</p>
+<p style="font-size:15px;line-height:2.05;color:var(--color-ink-700);margin:0 0 20px;max-width:46ch">O método combina uma avaliação criteriosa com técnicas específicas que incluem a bioestimulação de colágeno e a liberação dos septos fibrosos responsáveis pelas depressões características da celulite, sempre conforme indicação médica e planejamento individualizado.</p>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;margin-top:clamp(20px,2.3vw,30px)">
+<a href="https://goldincision.com.br/" target="_blank" rel="noopener" style="display:inline-block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-white);background:#61202E;border:1px solid #61202E;border-radius:var(--radius-pill);padding:17px 36px;transition:background-color 800ms cubic-bezier(.22,1,.36,1),color 800ms cubic-bezier(.22,1,.36,1),transform 700ms cubic-bezier(.22,1,.36,1),box-shadow 700ms cubic-bezier(.22,1,.36,1)" style-hover="background:transparent;color:#61202E;transform:scale(1.02);box-shadow:0 14px 34px rgba(97,32,46,.18)">Site oficial da técnica</a>
+</div>
+</div>
+<figure data-photo="sand" style="margin:0;overflow:hidden;border-radius:24% 24% 24% 0 / 19.2% 19.2% 19.2% 0;aspect-ratio:4/5;background:rgba(0,0,0,.05);animation:maskUp 1.8s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 0% entry 62%">
+<img data-parallax="1" src="assets/goldincision-pele.png" alt="Detalhe editorial de textura da pele" style="width:100%;height:100%;object-fit:cover;object-position:50% 40%;animation:driftSlow linear both;animation-timeline:view();animation-range:cover 0% cover 100%">
+</figure>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;margin-top:clamp(44px,5.4vw,79px)">
+<article data-card="1" style="border-top:1px solid rgba(97,32,46,.28);padding:clamp(22px,2.3vw,31px) clamp(19px,2.3vw,34px) 0 0;animation:rise 1.1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 6% entry 66%">
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(16px,1.3vw,20px);line-height:1.22;margin:0 0 16px;color:#61202E">Formação específica</h3>
+<p style="font-size:14px;line-height:1.95;color:var(--color-ink-700);margin:0;max-width:30ch">Capacitação em GoldIncision® com o Dr. Roberto Chacur, criador da técnica.</p>
+</article>
+<article data-card="1" style="border-top:1px solid rgba(97,32,46,.28);padding:clamp(22px,2.3vw,31px) clamp(19px,2.3vw,34px) 0 0;animation:rise 1.1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 10% entry 70%">
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(16px,1.3vw,20px);line-height:1.22;margin:0 0 16px;color:#61202E">Planejamento individualizado</h3>
+<p style="font-size:14px;line-height:1.95;color:var(--color-ink-700);margin:0;max-width:31ch">Cada paciente passa por avaliação médica detalhada para verificar se existe indicação para utilização da técnica, isoladamente ou associada a outros protocolos.</p>
+</article>
+<article data-card="1" style="border-top:1px solid rgba(97,32,46,.28);padding:clamp(22px,2.3vw,31px) 0 0;animation:rise 1.1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 14% entry 74%">
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(16px,1.3vw,20px);line-height:1.22;margin:0 0 16px;color:#61202E">Tratamento integrado</h3>
+<p style="font-size:14px;line-height:1.95;color:var(--color-ink-700);margin:0;max-width:31ch">Além de tratar a causa da celulite, promovendo uma pele mais uniforme, firme e natural, a técnica pode ser associada à harmonização glútea para valorizar ainda mais o resultado.</p>
+</article>
+</div>
+</div>
+</section>
+
+<section id="tecnologias" data-screen-label="Tecnologias" style="padding:clamp(28px,3.2vw,44px) 0 clamp(26px,2.8vw,40px)">
+<div style="max-width:1320px;margin:0 auto;padding:0 clamp(24px,5vw,96px)">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:36px;margin-bottom:clamp(38px,4.8vw,68px)">
+<h2 style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(23px,3vw,44px);line-height:1.08;letter-spacing:-.014em;margin:0;max-width:18ch;animation:revealUp 1.5s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 8% entry 72%">Tecnologia a serviço da precisão</h2>
+<p style="font-size:15px;line-height:2;color:var(--color-text-secondary);margin:0;max-width:40ch;animation:rise 1.2s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 12% entry 76%">Cada recurso é utilizado quando houver indicação clínica, sempre como apoio ao diagnóstico e ao tratamento — nunca como um fim em si mesmo.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0">
+<article style="border-top:1px solid var(--color-sand-200);padding:clamp(20px,2.2vw,28px) clamp(17px,2vw,31px) clamp(23px,2.7vw,34px) 0;animation:riseSm .9s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 4% entry 58%" data-tech="1">
+<span style="display:inline-flex;color:var(--color-taupe-400);margin:0 0 22px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="1.6" fill="currentColor" stroke="none"></circle><line x1="8" y1="16" x2="17" y2="7"></line><line x1="15" y1="4" x2="19" y2="4"></line><line x1="20" y1="5" x2="20" y2="9"></line></svg></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(16px,1.3vw,20px);line-height:1.2;margin:0 0 12px">Laser Transdérmico</h3>
+<p style="font-size:13.5px;line-height:1.9;color:var(--color-text-secondary);margin:0;max-width:28ch">Precisão e potência para tratar manchas, vasinhos e rejuvenescimento da pele.</p>
+</article>
+<article style="border-top:1px solid var(--color-sand-200);padding:clamp(20px,2.2vw,28px) clamp(17px,2vw,31px) clamp(23px,2.7vw,34px) 0;animation:riseSm .9s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 6% entry 60%" data-tech="1">
+<span style="display:inline-flex;color:var(--color-taupe-400);margin:0 0 22px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-3 4 -5 6 -5 10a5 5 0 0 0 10 0c0 -2 -1 -3.5 -2 -4.5c0 1.5 -1 2.7 -2 2.7c-1.2 0 -1.8 -1.1 -0.9 -2.9c0.5 -1 0.4 -3.3 -0.1 -5.3z"></path></svg></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(16px,1.3vw,20px);line-height:1.2;margin:0 0 12px">Endolaser</h3>
+<p style="font-size:13.5px;line-height:1.9;color:var(--color-text-secondary);margin:0;max-width:28ch">Ablação térmica minimamente invasiva para refluxo venoso e varizes calibrosas.</p>
+</article>
+<article style="border-top:1px solid var(--color-sand-200);padding:clamp(20px,2.2vw,28px) clamp(17px,2vw,31px) clamp(23px,2.7vw,34px) 0;animation:riseSm .9s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 8% entry 62%" data-tech="1">
+<span style="display:inline-flex;color:var(--color-taupe-400);margin:0 0 22px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 16 0"></path><path d="M7 12a5 5 0 0 1 10 0"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"></circle></svg></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(16px,1.3vw,20px);line-height:1.2;margin:0 0 12px">Ultrassom Doppler</h3>
+<p style="font-size:13.5px;line-height:1.9;color:var(--color-text-secondary);margin:0;max-width:28ch">Mapeia o funcionamento da circulação antes de qualquer decisão terapêutica.</p>
+</article>
+<article style="border-top:1px solid var(--color-sand-200);padding:clamp(20px,2.2vw,28px) 0 clamp(23px,2.7vw,34px);animation:riseSm .9s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 10% entry 64%" data-tech="1">
+<span style="display:inline-flex;color:var(--color-taupe-400);margin:0 0 22px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2.5 -4 7 -6 10 -6s7.5 2 10 6c-2.5 4 -7 6 -10 6s-7.5 -2 -10 -6z"></path><circle cx="12" cy="12" r="2.4"></circle></svg></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(16px,1.3vw,20px);line-height:1.2;margin:0 0 12px">Realidade Aumentada</h3>
+<p style="font-size:13.5px;line-height:1.9;color:var(--color-text-secondary);margin:0;max-width:28ch">Mapeamento vascular em tempo real durante a avaliação e o procedimento.</p>
+</article>
+<article style="border-top:1px solid var(--color-sand-200);padding:clamp(20px,2.2vw,28px) clamp(17px,2vw,31px) clamp(23px,2.7vw,34px) 0;animation:riseSm .9s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 12% entry 66%" data-tech="1">
+<span style="display:inline-flex;color:var(--color-taupe-400);margin:0 0 22px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="1" fill="currentColor" stroke="none"></circle><circle cx="12" cy="7" r="1" fill="currentColor" stroke="none"></circle><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"></circle><circle cx="7" cy="12" r="1" fill="currentColor" stroke="none"></circle><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"></circle><circle cx="17" cy="12" r="1" fill="currentColor" stroke="none"></circle><circle cx="7" cy="17" r="1" fill="currentColor" stroke="none"></circle><circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"></circle><circle cx="17" cy="17" r="1" fill="currentColor" stroke="none"></circle></svg></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(16px,1.3vw,20px);line-height:1.2;margin:0 0 12px">Morpheus</h3>
+<p style="font-size:13.5px;line-height:1.9;color:var(--color-text-secondary);margin:0;max-width:28ch">Radiofrequência microagulhada para estímulo profundo de colágeno.</p>
+</article>
+<article style="border-top:1px solid var(--color-sand-200);padding:clamp(20px,2.2vw,28px) clamp(17px,2vw,31px) clamp(23px,2.7vw,34px) 0;animation:riseSm .9s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 14% entry 68%" data-tech="1">
+<span style="display:inline-flex;color:var(--color-taupe-400);margin:0 0 22px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4.5 6 8 6 11a6 6 0 0 1 -12 0c0 -3 3 -6.5 6 -11z"></path></svg></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(16px,1.3vw,20px);line-height:1.2;margin:0 0 12px">Sedação Consciente com Óxido Nitroso</h3>
+<p style="font-size:13.5px;line-height:1.9;color:var(--color-text-secondary);margin:0;max-width:28ch">Conforto e monitorização durante procedimentos realizados em consultório. O paciente permanece consciente e relaxado.</p>
+</article>
+<article style="border-top:1px solid var(--color-sand-200);padding:clamp(20px,2.2vw,28px) 0 clamp(23px,2.7vw,34px);animation:riseSm .9s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 16% entry 70%" data-tech="1">
+<span style="display:inline-flex;color:var(--color-taupe-400);margin:0 0 22px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><circle cx="12" cy="12" r="6.5"></circle><circle cx="12" cy="12" r="10" opacity="0.55"></circle></svg></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(16px,1.3vw,20px);line-height:1.2;margin:0 0 12px">Deep Slim</h3>
+<p style="font-size:13.5px;line-height:1.9;color:var(--color-text-secondary);margin:0;max-width:28ch">Ultrassom multifocal que trata processos inflamatórios como fibrose, celulite, lipedema e linfedema.</p>
+</article>
+</div>
+</div>
+</section>
+
+<section data-screen-label="Jornada" style="background:var(--color-sand-50);border-radius:var(--radius-soft-lg);padding:clamp(36px,4.2vw,58px) clamp(24px,5vw,96px) clamp(36px,4.2vw,58px)">
+<div style="max-width:1320px;margin:0 auto">
+<p style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--color-taupe-500);margin:0 0 clamp(19px,2.2vw,29px);animation:riseSm 1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 4% entry 58%">Sua jornada</p>
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px">
+<h2 style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(23px,2.9vw,41px);line-height:1.08;letter-spacing:-.014em;margin:0;max-width:16ch;animation:revealUp 1.5s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 6% entry 66%">Como acontece sua jornada</h2>
+<p style="font-size:15px;line-height:2;color:var(--color-text-secondary);margin:0;max-width:34ch;animation:rise 1.2s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 10% entry 70%">Cada etapa acontece dentro de um espaço pensado para acolher, diagnosticar e tratar com precisão.</p>
+</div>
+</div>
+
+<div data-gallery="1" style="width:calc(100% + 2 * clamp(24px,5vw,96px));margin:clamp(35px,4.1vw,60px) 0 clamp(38px,4.4vw,65px) calc(-1 * clamp(24px,5vw,96px));display:flex;gap:10px;height:clamp(300px,44vh,520px);perspective:1600px;animation:maskUp 1.6s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 0% entry 52%">
+<div onMouseEnter="{{ g0.enter }}" onClick="{{ g0.enter }}" onFocus="{{ g0.enter }}" tabindex="0" style="position:relative;flex:1 1 0;min-width:0;overflow:hidden;cursor:pointer;outline:none;background:var(--color-sand-100);border-radius:44px 44px 44px 0;transform-style:preserve-3d;transition:flex-grow 1000ms cubic-bezier(.22,1,.36,1),transform 1000ms cubic-bezier(.22,1,.36,1),box-shadow 1000ms cubic-bezier(.22,1,.36,1);flex-grow:{{ g0.grow }};transform:rotateY({{ g0.rot }});box-shadow:{{ g0.shadow }}">
+<img src="assets/jornada-1.png" alt="Acolhimento" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter 1300ms cubic-bezier(.22,1,.36,1),object-position 1400ms cubic-bezier(.22,1,.36,1);object-position:{{ g0.pos }};filter:grayscale({{ g0.gray }}) brightness({{ g0.bright }})">
+<span style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(38,28,20,0) 44%,rgba(38,28,20,.58) 100%);transition:opacity 1000ms cubic-bezier(.22,1,.36,1);opacity:{{ g0.veil }}"></span>
+<span style="position:absolute;left:clamp(17px,1.7vw,29px);right:clamp(14px,1.7vw,24px);bottom:clamp(17px,1.7vw,27px);display:flex;align-items:center;gap:14px;pointer-events:none;transition:opacity 900ms cubic-bezier(.22,1,.36,1),transform 900ms cubic-bezier(.22,1,.36,1);opacity:{{ g0.on }};transform:translateX({{ g0.slide }})">
+<span style="flex:none;display:block;width:2px;height:26px;background:var(--color-sand)"></span>
+<span style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(14px,1.3vw,21px);color:var(--color-white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 20px rgba(0,0,0,.45)">Acolhimento</span>
+</span>
+</div>
+<div onMouseEnter="{{ g1.enter }}" onClick="{{ g1.enter }}" onFocus="{{ g1.enter }}" tabindex="0" style="position:relative;flex:1 1 0;min-width:0;overflow:hidden;cursor:pointer;outline:none;background:var(--color-sand-100);border-radius:44px 44px 44px 0;transform-style:preserve-3d;transition:flex-grow 1000ms cubic-bezier(.22,1,.36,1),transform 1000ms cubic-bezier(.22,1,.36,1),box-shadow 1000ms cubic-bezier(.22,1,.36,1);flex-grow:{{ g1.grow }};transform:rotateY({{ g1.rot }});box-shadow:{{ g1.shadow }}">
+<img src="assets/jornada-2.png" alt="Consultório" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter 1300ms cubic-bezier(.22,1,.36,1),object-position 1400ms cubic-bezier(.22,1,.36,1);object-position:{{ g1.pos }};filter:grayscale({{ g1.gray }}) brightness({{ g1.bright }})">
+<span style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(38,28,20,0) 44%,rgba(38,28,20,.58) 100%);transition:opacity 1000ms cubic-bezier(.22,1,.36,1);opacity:{{ g1.veil }}"></span>
+<span style="position:absolute;left:clamp(17px,1.7vw,29px);right:clamp(14px,1.7vw,24px);bottom:clamp(17px,1.7vw,27px);display:flex;align-items:center;gap:14px;pointer-events:none;transition:opacity 900ms cubic-bezier(.22,1,.36,1),transform 900ms cubic-bezier(.22,1,.36,1);opacity:{{ g1.on }};transform:translateX({{ g1.slide }})">
+<span style="flex:none;display:block;width:2px;height:26px;background:var(--color-sand)"></span>
+<span style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(14px,1.3vw,21px);color:var(--color-white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 20px rgba(0,0,0,.45)">Consultório</span>
+</span>
+</div>
+<div onMouseEnter="{{ g2.enter }}" onClick="{{ g2.enter }}" onFocus="{{ g2.enter }}" tabindex="0" style="position:relative;flex:1 1 0;min-width:0;overflow:hidden;cursor:pointer;outline:none;background:var(--color-sand-100);border-radius:44px 44px 44px 0;transform-style:preserve-3d;transition:flex-grow 1000ms cubic-bezier(.22,1,.36,1),transform 1000ms cubic-bezier(.22,1,.36,1),box-shadow 1000ms cubic-bezier(.22,1,.36,1);flex-grow:{{ g2.grow }};transform:rotateY({{ g2.rot }});box-shadow:{{ g2.shadow }}">
+<img src="assets/jornada-3.png" alt="Acompanhamento" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter 1300ms cubic-bezier(.22,1,.36,1),object-position 1400ms cubic-bezier(.22,1,.36,1);object-position:{{ g2.pos }};filter:grayscale({{ g2.gray }}) brightness({{ g2.bright }})">
+<span style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(38,28,20,0) 44%,rgba(38,28,20,.58) 100%);transition:opacity 1000ms cubic-bezier(.22,1,.36,1);opacity:{{ g2.veil }}"></span>
+<span style="position:absolute;left:clamp(17px,1.7vw,29px);right:clamp(14px,1.7vw,24px);bottom:clamp(17px,1.7vw,27px);display:flex;align-items:center;gap:14px;pointer-events:none;transition:opacity 900ms cubic-bezier(.22,1,.36,1),transform 900ms cubic-bezier(.22,1,.36,1);opacity:{{ g2.on }};transform:translateX({{ g2.slide }})">
+<span style="flex:none;display:block;width:2px;height:26px;background:var(--color-sand)"></span>
+<span style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(14px,1.3vw,21px);color:var(--color-white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 20px rgba(0,0,0,.45)">Acompanhamento</span>
+</span>
+</div>
+<div onMouseEnter="{{ g3.enter }}" onClick="{{ g3.enter }}" onFocus="{{ g3.enter }}" tabindex="0" style="position:relative;flex:1 1 0;min-width:0;overflow:hidden;cursor:pointer;outline:none;background:var(--color-sand-100);border-radius:44px 44px 44px 0;transform-style:preserve-3d;transition:flex-grow 1000ms cubic-bezier(.22,1,.36,1),transform 1000ms cubic-bezier(.22,1,.36,1),box-shadow 1000ms cubic-bezier(.22,1,.36,1);flex-grow:{{ g3.grow }};transform:rotateY({{ g3.rot }});box-shadow:{{ g3.shadow }}">
+<img src="assets/jornada-4.png" alt="Sala de procedimentos" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter 1300ms cubic-bezier(.22,1,.36,1),object-position 1400ms cubic-bezier(.22,1,.36,1);object-position:{{ g3.pos }};filter:grayscale({{ g3.gray }}) brightness({{ g3.bright }})">
+<span style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(38,28,20,0) 44%,rgba(38,28,20,.58) 100%);transition:opacity 1000ms cubic-bezier(.22,1,.36,1);opacity:{{ g3.veil }}"></span>
+<span style="position:absolute;left:clamp(17px,1.7vw,29px);right:clamp(14px,1.7vw,24px);bottom:clamp(17px,1.7vw,27px);display:flex;align-items:center;gap:14px;pointer-events:none;transition:opacity 900ms cubic-bezier(.22,1,.36,1),transform 900ms cubic-bezier(.22,1,.36,1);opacity:{{ g3.on }};transform:translateX({{ g3.slide }})">
+<span style="flex:none;display:block;width:2px;height:26px;background:var(--color-sand)"></span>
+<span style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(14px,1.3vw,21px);color:var(--color-white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 20px rgba(0,0,0,.45)">Sala de procedimentos</span>
+</span>
+</div>
+</div>
+
+<div style="max-width:1320px;margin:0 auto">
+<ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:clamp(28px,3.1vw,44px) 0">
+<li data-jstep="1" style="display:flex;flex-direction:column;animation:riseSm 1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 4% entry 58%">
+<span style="display:inline-flex;color:var(--color-taupe-400);padding-right:clamp(17px,2.2vw,37px)"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"></circle><line x1="20" y1="20" x2="14.8" y2="14.8"></line></svg></span>
+<span style="position:relative;display:block;height:1px;background:var(--color-sand-300);margin:clamp(17px,1.9vw,26px) 0 clamp(19px,2vw,28px);transform-origin:left;animation:growLine 1.1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 6% entry 44%"><span style="position:absolute;left:0;top:-2.5px;width:6px;height:6px;border-radius:50%;background:#61202E"></span></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(17px,1.4vw,23px);line-height:1.16;margin:0 0 14px;padding-right:clamp(17px,2.2vw,37px)">Avaliação</h3>
+<p style="font-size:14px;line-height:1.95;color:var(--color-text-secondary);margin:0;padding-right:clamp(17px,2.2vw,37px)">Conhecer você é o primeiro passo. A consulta reúne histórico clínico, exame físico e investigação detalhada dos sintomas.</p>
+</li>
+<li data-jstep="1" style="display:flex;flex-direction:column;animation:riseSm 1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 8% entry 62%">
+<span style="display:inline-flex;color:var(--color-taupe-400);padding-right:clamp(17px,2.2vw,37px)"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,12 7,12 9,6 13,18 15,12 22,12"></polyline></svg></span>
+<span style="position:relative;display:block;height:1px;background:var(--color-sand-300);margin:clamp(17px,1.9vw,26px) 0 clamp(19px,2vw,28px);transform-origin:left;animation:growLine 1.1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 11% entry 49%"><span style="position:absolute;left:0;top:-2.5px;width:6px;height:6px;border-radius:50%;background:#61202E"></span></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(17px,1.4vw,23px);line-height:1.16;margin:0 0 14px;padding-right:clamp(17px,2.2vw,37px)">Diagnóstico</h3>
+<p style="font-size:14px;line-height:1.95;color:var(--color-text-secondary);margin:0;padding-right:clamp(17px,2.2vw,37px)">A combinação entre experiência médica e tecnologias diagnósticas permite compreender a origem de cada alteração.</p>
+</li>
+<li data-jstep="1" style="display:flex;flex-direction:column;animation:riseSm 1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 12% entry 66%">
+<span style="display:inline-flex;color:var(--color-taupe-400);padding-right:clamp(17px,2.2vw,37px)"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="10.6,8.8 13.6,12 10.6,15.2"></polyline></svg></span>
+<span style="position:relative;display:block;height:1px;background:var(--color-sand-300);margin:clamp(17px,1.9vw,26px) 0 clamp(19px,2vw,28px);transform-origin:left;animation:growLine 1.1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 16% entry 54%"><span style="position:absolute;left:0;top:-2.5px;width:6px;height:6px;border-radius:50%;background:#61202E"></span></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(17px,1.4vw,23px);line-height:1.16;margin:0 0 14px;padding-right:clamp(17px,2.2vw,37px)">Planejamento</h3>
+<p style="font-size:14px;line-height:1.95;color:var(--color-text-secondary);margin:0;padding-right:clamp(17px,2.2vw,37px)">O tratamento é construído de forma personalizada, respeitando suas necessidades, objetivos e condições clínicas.</p>
+</li>
+<li data-jstep="1" style="display:flex;flex-direction:column;animation:riseSm 1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 16% entry 70%">
+<span style="display:inline-flex;color:var(--color-taupe-400);padding-right:clamp(17px,2.2vw,37px)"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="8,12.5 11,15.5 16,9"></polyline></svg></span>
+<span style="position:relative;display:block;height:1px;background:var(--color-sand-300);margin:clamp(17px,1.9vw,26px) 0 clamp(19px,2vw,28px);transform-origin:left;animation:growLine 1.1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 21% entry 59%"><span style="position:absolute;left:0;top:-2.5px;width:6px;height:6px;border-radius:50%;background:#61202E"></span></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(17px,1.4vw,23px);line-height:1.16;margin:0 0 14px;padding-right:clamp(17px,2.2vw,37px)">Execução</h3>
+<p style="font-size:14px;line-height:1.95;color:var(--color-text-secondary);margin:0;padding-right:clamp(17px,2.2vw,37px)">Cada procedimento é realizado conforme indicação médica, utilizando técnicas e tecnologias apropriadas para cada caso.</p>
+</li>
+<li data-jstep="1" style="display:flex;flex-direction:column;animation:riseSm 1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 20% entry 74%">
+<span style="display:inline-flex;color:var(--color-taupe-400);padding-right:clamp(17px,2.2vw,37px)"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"></rect><line x1="3" y1="10" x2="21" y2="10"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="16" y1="3" x2="16" y2="7"></line><polyline points="8,15 10.5,17.5 15,13"></polyline></svg></span>
+<span style="position:relative;display:block;height:1px;background:var(--color-sand-300);margin:clamp(17px,1.9vw,26px) 0 clamp(19px,2vw,28px);transform-origin:left;animation:growLine 1.1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 26% entry 64%"><span style="position:absolute;left:0;top:-2.5px;width:6px;height:6px;border-radius:50%;background:#61202E"></span></span>
+<h3 style="font-family:var(--font-serif-display);font-weight:400;font-size:clamp(17px,1.4vw,23px);line-height:1.16;margin:0 0 14px;padding-right:clamp(17px,2.2vw,37px)">Acompanhamento</h3>
+<p style="font-size:14px;line-height:1.95;color:var(--color-text-secondary);margin:0;padding-right:clamp(17px,2.2vw,37px)">A evolução é acompanhada por meio de retornos programados, orientações individualizadas e reavaliações quando indicadas.</p>
+</li>
+</ol>
+</div>
+</section>
+
+<section id="sobre" data-screen-label="Sobre a Dra. Fernanda" style="padding:clamp(36px,4.2vw,58px) clamp(24px,5vw,96px)">
+<div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(30px,4.1vw,75px);align-items:center">
+<div style="--slideX:-26px;animation:riseX 1.3s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 8% entry 72%">
+<p style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--color-taupe-500);margin:0 0 clamp(19px,2.2vw,29px)">Conheça a Dra. Fernanda</p>
+<h2 style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(23px,2.9vw,41px);line-height:1.1;letter-spacing:-.014em;margin:0 0 clamp(22px,2.5vw,33px);max-width:22ch">Cuidado individualizado, tecnologia e excelência médica</h2>
+<p style="font-size:16px;line-height:2;color:var(--color-text-secondary);margin:0 0 22px;max-width:46ch">A Dra. Fernanda Mescolin atua em Cirurgia Vascular e Endovascular com uma abordagem que integra ciência, tecnologia e cuidado individualizado.</p>
+<p style="font-size:16px;line-height:2;color:var(--color-text-secondary);margin:0 0 22px;max-width:46ch">Seu trabalho é voltado ao tratamento de varizes, lipedema, flacidez, harmonização glútea e celulite, oferecendo soluções modernas para quem busca mais saúde, beleza, funcionalidade e resultados naturais. Com atuação voltada à Dermatoflebologia, área que une saúde vascular, qualidade da pele e estética, desenvolve tratamentos personalizados baseados em diagnóstico preciso e tecnologia avançada.</p>
+<p style="font-size:16px;line-height:2;color:var(--color-text-secondary);margin:0;max-width:46ch">Seu compromisso é oferecer resultados eficazes, seguros e duradouros, respeitando a individualidade de cada paciente e promovendo uma transformação que vai além da estética.</p>
+<a href="#contato" data-link="1" style="display:inline-block;margin-top:clamp(27px,3.1vw,41px);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-navy);border-bottom:1px solid var(--color-sand-300);padding-bottom:9px;transition:opacity 800ms cubic-bezier(.22,1,.36,1),border-color 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5;border-color:var(--color-taupe-500)">Conheça sua trajetória</a>
+</div>
+<figure data-photo="light" style="margin:0;overflow:hidden;border-radius:24% 24% 24% 0 / 19.2% 19.2% 19.2% 0;aspect-ratio:4/5;background:var(--color-sand-100);animation:maskUp 1.8s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 0% entry 60%">
+<img data-parallax="1" src="assets/portrait-blue.jpg" alt="Dra. Fernanda Mescolin" style="width:100%;height:100%;object-fit:cover;object-position:50% 28%;animation:driftSlow linear both;animation-timeline:view();animation-range:cover 0% cover 100%">
+</figure>
+</div>
+</section>
+
+<section id="faq" data-screen-label="Dúvidas frequentes" style="background:var(--color-sand-100);border-radius:var(--radius-soft-lg);margin-top:clamp(16px,1.9vw,28px);animation:bandIn 1.3s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 0% entry 42%;padding:clamp(65px,8.8vw,122px) clamp(24px,5vw,96px)">
+<div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1fr);gap:clamp(27px,4.1vw,68px);align-items:start">
+<div style="animation:rise 1.2s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 8% entry 70%">
+<p style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--color-taupe-600);margin:0 0 clamp(19px,2.2vw,29px)">Dúvidas frequentes</p>
+<h2 style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(22px,2.7vw,37px);line-height:1.1;letter-spacing:-.014em;margin:0;max-width:16ch">Antes de agendar sua consulta, talvez você queira saber</h2>
+</div>
+<div style="animation:rise 1.2s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 10% entry 74%">
+<x-import component-from-global-scope="DraFernandaMescolinDesignSystem_641808.Accordion" items="{{ faq }}" hint-size="100%,340px"></x-import>
+</div>
+</div>
+</section>
+
+<section data-screen-label="Depoimentos" style="padding:clamp(36px,4.2vw,58px) clamp(24px,5vw,96px)">
+<div style="max-width:1320px;margin:0 auto">
+<p style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--color-taupe-500);margin:0 0 clamp(19px,2.2vw,29px);animation:riseSm 1s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 4% entry 58%">Quem já passou por aqui</p>
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px">
+<h2 style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(23px,3vw,44px);line-height:1.08;letter-spacing:-.015em;margin:0;max-width:18ch;animation:revealUp 1.5s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 6% entry 66%">Muito mais que protocolos.<br><span style="color:var(--color-taupe-500)">Aqui realizamos sonhos.</span></h2>
+<p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe-500);margin:0;animation:rise 1.2s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 10% entry 70%">Toque em um depoimento para ler</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(14px,1.7vw,22px);margin-top:clamp(35px,4.4vw,63px);animation:rise 1.3s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 8% entry 68%">
+<sc-for list="{{ deps }}" as="c" hint-placeholder-count="5">
+<article data-dep="1" data-float="1" data-open="{{ c.open }}" onClick="{{ c.toggle }}" style="background:var(--color-sand-50);border-radius:28px 28px 28px 0;padding:clamp(20px,2.2vw,30px);box-shadow:0 18px 52px rgba(30,25,20,.08)">
+<span style="display:block;font-family:var(--font-serif-display);font-weight:300;font-size:34px;line-height:.6;color:var(--color-sand-300);margin-bottom:20px">&#8221;</span>
+<p data-short="1" style="font-size:14.5px;line-height:1.9;color:var(--color-text-secondary);margin:0">{{ c.short }}</p>
+<p data-full="1" style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(16px,1.4vw,21px);line-height:1.5;color:var(--color-black);margin:0">{{ c.full }}</p>
+<p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-taupe-500);margin:clamp(19px,2vw,27px) 0 0">{{ c.name }}</p>
+</article>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section id="contato" data-screen-label="CTA final" style="padding:clamp(36px,4.2vw,58px) clamp(24px,5vw,96px)">
+<div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1fr);gap:clamp(30px,4.1vw,75px);align-items:center">
+<figure data-photo="light" style="margin:0;overflow:hidden;border-radius:24% 24% 24% 0 / 19.2% 19.2% 19.2% 0;aspect-ratio:4/5;background:var(--color-sand-100);animation:maskUp 1.8s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 0% entry 60%">
+<img data-parallax="1" src="assets/portrait-arch-red.jpg" alt="Dra. Fernanda Mescolin" style="width:100%;height:100%;object-fit:cover;object-position:50% 50%;animation:driftSlow linear both;animation-timeline:view();animation-range:cover 0% cover 100%">
+</figure>
+<div style="animation:rise 1.3s cubic-bezier(.22,1,.36,1) both;animation-timeline:view();animation-range:entry 8% entry 72%">
+<h2 style="font-family:var(--font-serif-display);font-weight:300;font-size:clamp(23px,3vw,44px);line-height:1.08;letter-spacing:-.015em;margin:0 0 clamp(20px,2.3vw,30px);max-width:20ch">Seu tratamento começa com um diagnóstico preciso.</h2>
+<p style="font-size:16px;line-height:2;color:var(--color-text-secondary);margin:0 0 20px;max-width:44ch">Antes de indicar qualquer procedimento, é essencial compreender a origem dos seus sintomas, avaliar sua circulação e entender as características do seu caso. É a partir dessa avaliação que construímos um plano de tratamento individualizado, seguro e baseado em evidências.</p>
+<p style="font-size:16px;line-height:2;color:var(--color-text-secondary);margin:0;max-width:44ch">Agende sua consulta e descubra a abordagem mais adequada para a sua saúde, o seu corpo e os seus objetivos.</p>
+<div style="margin-top:clamp(28px,3.4vw,44px)">
+<span data-cta="1" style="display:inline-flex"><x-import component-from-global-scope="DraFernandaMescolinDesignSystem_641808.Button" onClick="{{ book }}" hint-size="200px,54px">Agendar avaliação</x-import></span>
+</div>
+</div>
+</div>
+</section>
+
+<footer data-screen-label="Footer" style="background:#61202E;color:var(--color-white);border-radius:var(--radius-soft-lg) var(--radius-soft-lg) 0 0;padding:clamp(34px,4vw,56px) clamp(24px,5vw,96px) clamp(28px,3.1vw,44px)">
+<div style="max-width:1320px;margin:0 auto">
+<div style="display:grid;grid-template-columns:minmax(0,1.4fr) repeat(auto-fit,minmax(150px,1fr));gap:clamp(27px,3.4vw,54px);padding-bottom:clamp(35px,4.1vw,57px);border-bottom:1px solid rgba(255,255,255,.14)">
+<div>
+<img src="assets/logo-fm-white-sm.png" alt="Dra. Fernanda Mescolin" style="align-self:flex-start;height:78px;width:auto;object-fit:contain">
+<p style="font-size:14px;line-height:1.95;color:rgba(255,255,255,.6);margin:clamp(20px,2.3vw,30px) 0 0;max-width:34ch">Cirurgia Vascular e Endovascular. Medicina baseada em ciência, tecnologia aplicada e acompanhamento individualizado.</p>
+</div>
+<div>
+<h4 style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:300;color:rgba(255,255,255,.5);margin:0 0 26px">Protocolos</h4>
+<ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:15px;font-size:14px">
+<li><a href="EssenceConcept.dc.html" data-flink="1" style="color:var(--color-white);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5">Essence Concept</a></li>
+<li><a href="LipEssence.dc.html" data-flink="1" style="color:var(--color-white);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5">LipEssence</a></li>
+<li><a href="SculptEssence.dc.html" data-flink="1" style="color:var(--color-white);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5">SculptEssence</a></li>
+<li><a href="#protocolos" data-flink="1" style="color:var(--color-white);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5">DermaEssence</a></li>
+<li><a href="GoldIncision.dc.html" data-flink="1" style="color:var(--color-white);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5">GoldIncision®</a></li>
+</ul>
+</div>
+<div>
+<h4 style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:300;color:rgba(255,255,255,.5);margin:0 0 26px">Navegação</h4>
+<ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:15px;font-size:14px">
+<li><a href="#sobre" data-flink="1" style="color:var(--color-white);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5">Sobre a Dra. Fernanda</a></li>
+<li><a href="#metodo" data-flink="1" style="color:var(--color-white);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5">Método</a></li>
+<li><a href="#tecnologias" data-flink="1" style="color:var(--color-white);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5">Tecnologias</a></li>
+<li><a href="#faq" data-flink="1" style="color:var(--color-white);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5">Dúvidas frequentes</a></li>
+</ul>
+</div>
+<div>
+<h4 style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:300;color:rgba(255,255,255,.5);margin:0 0 26px">Contato</h4>
+<ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:15px;font-size:14px;color:rgba(255,255,255,.72)">
+<li><a href="#contato" data-flink="1" style="color:var(--color-white);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5">Agendar avaliação</a></li>
+<li><a href="#contato" data-flink="1" style="color:var(--color-white);transition:opacity 800ms cubic-bezier(.22,1,.36,1)" style-hover="opacity:.5">Instagram</a></li>
+<li>Endereço a definir</li>
+</ul>
+</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;padding-top:clamp(22px,2.3vw,31px);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45)">
+<span>Dra. Fernanda Mescolin de Paula Dias Almeida — CRM a confirmar</span>
+<span>© 2026</span>
+</div>
+</div>
+</footer>
+
+<div data-om-fab="1" style="position:fixed;right:clamp(15px,2.6vw,34px);bottom:clamp(15px,2.6vw,34px);z-index:70;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity 900ms cubic-bezier(.22,1,.36,1),transform 900ms cubic-bezier(.22,1,.36,1)">
+<a href="#contato" style="display:inline-flex;align-items:center;gap:12px;background:var(--color-navy);color:var(--color-white);border-radius:var(--radius-pill);padding:16px 30px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;box-shadow:0 16px 40px rgba(44,59,90,.20);transition:background-color 800ms cubic-bezier(.22,1,.36,1),transform 700ms cubic-bezier(.22,1,.36,1),box-shadow 700ms cubic-bezier(.22,1,.36,1)" style-hover="background:#61202E;transform:scale(1.03);box-shadow:0 20px 48px rgba(97,32,46,.26)">Agendar avaliação</a>
+</div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { gal: 1, dep: -1 };
+  componentDidMount() {
+    this.onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      const h = document.querySelector('[data-om-header]');
+      if (h) {
+        const on = y > 40;
+        h.style.background = on ? 'rgba(255,255,255,.84)' : 'transparent';
+        h.style.backdropFilter = on ? 'saturate(150%) blur(16px)' : 'none';
+        h.style.webkitBackdropFilter = on ? 'saturate(150%) blur(16px)' : 'none';
+        h.style.borderBottomColor = on ? 'var(--color-sand-200)' : 'transparent';
+        h.style.height = on ? 'clamp(78px,6.8vw,94px)' : 'clamp(96px,8.4vw,116px)';
+        const logo = h.querySelector('img');
+        if (logo) { logo.style.transition = 'height 900ms cubic-bezier(.22,1,.36,1)'; logo.style.height = on ? 'clamp(52px,4.5vw,66px)' : 'clamp(62px,5.4vw,80px)'; }
+      }
+      const f = document.querySelector('[data-om-fab]');
+      if (f) {
+        const on2 = y > 900;
+        f.style.opacity = on2 ? '1' : '0';
+        f.style.transform = on2 ? 'translateY(0)' : 'translateY(14px)';
+        f.style.pointerEvents = on2 ? 'auto' : 'none';
+      }
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); }
+  renderVals() {
+    const depoimentos = [
+      { name: 'Aline De Paiva Ramos', short: 'Estou muito satisfeita com a competência, o carinho e a atenção.', full: 'Acabei de fazer meu tratamento com a Dra. Fernanda e estou muito satisfeita com a competência, carinho, atenção e comprometimento em seu trabalho. Super indico. Tratamento totalmente indolor.' },
+      { name: 'Regina Clicia Marques Garcia', short: 'Fiquei muito satisfeita com o atendimento, a atenção e o resultado.', full: 'Fiquei muito satisfeita com o atendimento, a atenção e o resultado da consulta. Dra. Fernanda me transmitiu firmeza na avaliação do problema, me deixando muito tranquila.' },
+      { name: 'Meire Isabel', short: 'Adorei meu tratamento, minhas pernas ficaram lindas.', full: 'Adorei meu tratamento, minhas pernas ficaram lindas. Dra. Fernanda é um ser incrível — só tenho que agradecer o carinho dela e de toda a sua equipe. Nota 10.' },
+      { name: 'Malvina Oliveira', short: 'Tratou uma úlcera venosa em minha mãe com tamanha competência e carinho.', full: 'Dra. Fernanda é maravilhosa! Tratou uma úlcera venosa em minha mãe com tamanha competência, carinho e modernidade. Difícil encontrar a palavra certa para demonstrar nossa gratidão e admiração. Obrigada, Dra. Fernanda.' },
+      { name: 'Maiara Duarte', short: 'Estou muito satisfeita com meus resultados no tratamento de varizes.', full: 'Estou realizando um tratamento de varizes com a Dra. Fernanda e muito satisfeita com meus resultados. A doutora é super atenciosa, educada e excelente profissional — ela e toda a sua equipe passam muito cuidado com a paciente.' },
+      { name: 'Fatime Freire', short: 'Sem dor, e já podendo mostrar minhas pernas sem constrangimento.', full: 'Estou muito satisfeita com o resultado do trabalho que a Dra. Fernanda fez em minhas pernas. Sem dor, e já podendo mostrá-las sem constrangimento. Só tenho a agradecer o carinho e a atenção.' },
+      { name: 'Adriana Silva', short: 'Meu tratamento foi excelente! Fiquei muito feliz com os resultados.', full: 'Meu tratamento com a Dra. Fernanda Mescolin foi excelente! Fiquei muito feliz com os resultados! Uma angiologista de excelência!' },
+      { name: 'Cristina Soares', short: 'Fiquei muito satisfeita com o resultado da minha cirurgia.', full: 'Dra. Fernanda é uma excelente profissional. Tem uma equipe maravilhosa, todos muito atenciosos. Fiquei muito satisfeita com o resultado da minha cirurgia. Recomendo muito.' },
+      { name: 'Liene Bizzo', short: 'Sem dúvida, a melhor angiologista que já conheci.', full: 'Excelente profissional! Para mim, sem dúvida, a melhor angiologista que já conheci. Atendimento impecável, com métodos inovadores e eficazes.' },
+      { name: 'Josimeire', short: 'Minha mãe está muito satisfeita com o tratamento.', full: 'Minha mãe está muito satisfeita com o tratamento. Dra. Fernanda é uma pessoa maravilhosa, incrível e muito humilde — minha mãe é fã dela. As meninas da equipe são ótimas. Obrigada pelo carinho e atenção.' }
+    ];
+    const clinic = [
+      { fy: '24%' },
+      { fy: '20%' },
+      { fy: '28%' },
+      { fy: '18%' }
+    ];
+    const a = this.state.gal;
+    const grow = ((0.46 * (clinic.length - 1)) / 0.54).toFixed(3);
+    const P = clinic.map((it, i) => ({
+      grow: i === a ? grow : '1',
+      rot: i === a ? '0deg' : (i < a ? '5deg' : '-5deg'),
+      gray: i === a ? '0' : '0.6',
+      bright: i === a ? '1' : '0.9',
+      veil: i === a ? '1' : '0.45',
+      pos: (i === a ? '50% ' : (i < a ? '62% ' : '38% ')) + (it.fy || '50%'),
+      on: i === a ? '1' : '0',
+      slide: i === a ? '0px' : '-14px',
+      shadow: i === a ? '0 30px 72px rgba(30,25,20,.22)' : '0 16px 44px rgba(30,25,20,.12)',
+      enter: () => { if (this.state.gal !== i) this.setState({ gal: i }); }
+    }));
+    return {
+      g0: P[0], g1: P[1], g2: P[2], g3: P[3],
+      deps: depoimentos.map((d, i) => ({
+        name: d.name, short: d.short, full: d.full,
+        open: this.state.dep === i ? '1' : '0',
+        toggle: () => this.setState(s => ({ dep: s.dep === i ? -1 : i }))
+      })),
+      book: () => { window.location.hash = '#contato'; },
+      faq: [
+        { question: 'Como saber qual é o tratamento ideal para o meu caso?', answer: 'A indicação é definida após uma avaliação médica detalhada, que considera seus sintomas, histórico clínico, exame físico e exames complementares, como o Ultrassom Doppler.' },
+        { question: 'Como é definido o plano de tratamento?', answer: 'Cada plano é elaborado de forma personalizada, levando em consideração o diagnóstico, os objetivos da paciente e as características individuais do seu corpo e da sua circulação.' },
+        { question: 'Os tratamentos são personalizados para cada paciente?', answer: 'Sim. Não trabalhamos com protocolos padronizados. A combinação de técnicas, tecnologias e etapas do tratamento é definida de acordo com as necessidades identificadas durante a avaliação.' },
+        { question: 'A harmonização glútea aumenta o volume ou melhora o formato do bumbum?', answer: 'O objetivo do tratamento é promover mais proporção, firmeza e definição dos contornos. Em muitos casos, a harmonização glútea melhora o formato, a sustentação e a qualidade da pele, com resultados naturais e personalizados.' },
+        { question: 'O GoldIncision® é indicado para qualquer tipo de celulite?', answer: 'Nem toda celulite tem a mesma causa ou profundidade. O GoldIncision® é uma técnica avançada e minimamente invasiva, indicada após avaliação médica, quando há indicação para tratar fibroses e melhorar o aspecto da pele.' },
+        { question: 'O acompanhamento faz parte do tratamento?', answer: 'Sim. O acompanhamento é uma etapa fundamental para monitorar a evolução, avaliar os resultados e realizar os ajustes necessários ao longo do tratamento, garantindo mais segurança e previsibilidade nos resultados.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
